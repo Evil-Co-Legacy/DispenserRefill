@@ -86,7 +86,7 @@ public class DispenserRefill extends JavaPlugin implements Listener {
 		if (event.isCancelled()) return;
 		
 		for(int i = 0; i < this.dispenserList.size(); i++) {
-			if (this.dispenserList.get(i).equals(event.getBlock().getX(), event.getBlock().getY(), event.getBlock().getZ())) {				
+			if (this.dispenserList.get(i).equals(event.getBlock().getWorld().getName(), event.getBlock().getX(), event.getBlock().getY(), event.getBlock().getZ())) {				
 				// readd item to stack
 				CraftDispenser dispenser = new CraftDispenser(event.getBlock());
 				
@@ -100,7 +100,7 @@ public class DispenserRefill extends JavaPlugin implements Listener {
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent event) {
 		for(int i = 0; i < this.dispenserList.size(); i++) {
-			if (this.dispenserList.get(i).equals(event.getBlock().getX(), event.getBlock().getY(), event.getBlock().getZ())) {
+			if (this.dispenserList.get(i).equals(event.getBlock().getWorld().getName(), event.getBlock().getX(), event.getBlock().getY(), event.getBlock().getZ())) {
 				// remove block from list
 				this.dispenserList.remove(i);
 				
@@ -131,7 +131,7 @@ public class DispenserRefill extends JavaPlugin implements Listener {
 				}
 				
 				// check for already infinite dispensers
-				DispenserPosition dispenserPosition = new DispenserPosition(pos.getBlockX(), pos.getBlockY(), pos.getBlockZ());
+				DispenserPosition dispenserPosition = new DispenserPosition(pos.getWorld().getName(), pos.getBlockX(), pos.getBlockY(), pos.getBlockZ());
 				
 				if (args.length <= 0) {
 					for(int i = 0; i < this.dispenserList.size(); i++) {
