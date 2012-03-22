@@ -11,6 +11,9 @@
 	- Removed 1st argument of /autorefill command
 	+ Fixed permissions
 	+ Database change now causes full database save
+	- Removed DispenserPosition
+		% This class was used to store data in serialized form. We'll use a new database system from now on.
+	- Removed the "The infinite dispenser at ... was eaten." easteregg.
 
 Legend:
 	+ New Feature / Improvement
