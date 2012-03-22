@@ -52,17 +52,11 @@ public class DispenserRefillWorldListener implements Listener {
 	public void onDispense(BlockDispenseEvent event) {	
 		if (event.isCancelled()) return;
 		
-		// FIXME: Remove this!!!
-		plugin.getLogger().info("Dispensed: " + event.getBlock().getLocation().toString());
-		
 		// get iterator
 		Iterator<Location> it = this.plugin.dispenserList.iterator();
 		
 		while(it.hasNext()) {
 			Location currentPosition = it.next();
-			
-			// FIXME: Remove this!!!
-			plugin.getLogger().info("DB: " + currentPosition.toString());
 			
 			// check
 			if (currentPosition.equals(event.getBlock().getLocation())) {
