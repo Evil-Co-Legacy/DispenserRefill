@@ -5,6 +5,7 @@ package de.akkarin.DispenserRefill.commands;
 
 import java.util.Iterator;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -15,7 +16,6 @@ import com.sk89q.minecraft.util.commands.CommandException;
 import com.sk89q.worldedit.WorldVector;
 import com.sk89q.worldedit.bukkit.BukkitPlayer;
 
-import de.akkarin.DispenserRefill.DispenserPosition;
 import de.akkarin.DispenserRefill.DispenserRefillPlugin;
 
 
@@ -60,15 +60,15 @@ public class GeneralCommands {
 			// check for correct block
 			if (pos.getWorld().getBlockType(pos) != Material.DISPENSER.getId()) throw new CommandException("You can make dispensers only make infinite!");
 			
-			// check for already infinite dispensers
-			DispenserPosition dispenserPosition = new DispenserPosition(pos.getWorld().getName(), pos.getBlockX(), pos.getBlockY(), pos.getBlockZ());
+			// get current location
+			Location dispenserPosition = new Location(this.plugin.getServer().getWorld(pos.getWorld().getName()), pos.getBlockX(), pos.getBlockY(), pos.getBlockZ());
 			
-			Iterator<DispenserPosition> it = this.plugin.dispenserList.iterator();
+			Iterator<Location> it = this.plugin.dispenserList.iterator();
 			
 			while(it.hasNext()) {
-				DispenserPosition currentPosition = it.next();
+				Location currentPosition = it.next();
 				
-				if (dispenserPosition.equals(currentPosition)) {
+				if (currentPosition.equals(dispenserPosition)) {
 					// dispenser already infinite! turn back to normal inventory
 					this.plugin.dispenserList.remove(currentPosition);
 					

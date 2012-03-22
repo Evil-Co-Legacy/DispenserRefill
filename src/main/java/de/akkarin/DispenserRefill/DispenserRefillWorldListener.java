@@ -3,6 +3,9 @@
  */
 package de.akkarin.DispenserRefill;
 
+import java.util.Iterator;
+
+import org.bukkit.Location;
 import org.bukkit.craftbukkit.block.CraftDispenser;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -49,16 +52,33 @@ public class DispenserRefillWorldListener implements Listener {
 	public void onDispense(BlockDispenseEvent event) {	
 		if (event.isCancelled()) return;
 		
-		for(int i = 0; i < this.plugin.dispenserList.size(); i++) {
-			if (this.plugin.dispenserList.get(i).equals(event.getBlock().getWorld().getName(), event.getBlock().getX(), event.getBlock().getY(), event.getBlock().getZ())) {				
-				// readd item to stack
+		// FIXME: Remove this!!!
+		plugin.getLogger().info("Dispensed: " + event.getBlock().getLocation().toString());
+		
+		// get iterator
+		Iterator<Location> it = this.plugin.dispenserList.iterator();
+		
+		while(it.hasNext()) {
+			Location currentPosition = it.next();
+			
+			// FIXME: Remove this!!!
+			plugin.getLogger().info("DB: " + currentPosition.toString());
+			
+			// check
+			if (currentPosition.equals(event.getBlock().getLocation())) {
+				// get dispenser
 				CraftDispenser dispenser = new CraftDispenser(event.getBlock());
 				
-				// create new item stack
-				ItemStack newItemList = event.getItem().clone();
-				dispenser.getInventory().addItem(newItemList);
+				// create item stack
+				ItemStack newItemStack = event.getItem().clone();
+				dispenser.getInventory().addItem(newItemStack);
+				
+				return; // Tony: Stop here. There is no other entry
 			}
 		}
+		
+		// debug logging
+		plugin.getLogger().finest("No dispenser found for position " + event.getBlock().getLocation().toString() + ".");
 	}
 	
 	/**
@@ -67,16 +87,26 @@ public class DispenserRefillWorldListener implements Listener {
 	 */
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent event) {
-		for(int i = 0; i < this.plugin.dispenserList.size(); i++) {
-			if (this.plugin.dispenserList.get(i).equals(event.getBlock().getWorld().getName(), event.getBlock().getX(), event.getBlock().getY(), event.getBlock().getZ())) {
-				// remove block from list
-				this.plugin.dispenserList.remove(i);
+		// get iterator
+		Iterator<Location> it = this.plugin.dispenserList.iterator();
+		
+		while(it.hasNext()) {
+			// get item
+			Location currentPosition = it.next();
+			
+			// check
+			if (currentPosition.equals(event.getBlock().getLocation())) {
+				// remove item
+				this.plugin.dispenserList.remove(currentPosition);
 				
 				// save database
 				this.plugin.saveDatabase();
 				
 				// notify user
-				this.plugin.getWorldEdit().wrapPlayer(event.getPlayer()).printError("The infinite dispenser at " + event.getBlock().getX() + "," + event.getBlock().getY() + "," + event.getBlock().getZ() + " was eaten ...");
+				this.plugin.getWorldEdit().wrapPlayer(event.getPlayer()).printError("You just destroyed an infinite dispenser.");
+				
+				// skip all other loops
+				return;
 			}
 		}
 	}

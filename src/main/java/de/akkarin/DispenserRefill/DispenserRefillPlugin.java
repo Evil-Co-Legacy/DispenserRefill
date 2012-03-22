@@ -3,10 +3,13 @@ package de.akkarin.DispenserRefill;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.util.Iterator;
+import java.util.Scanner;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -44,7 +47,7 @@ public class DispenserRefillPlugin extends JavaPlugin implements Listener {
 	/**
 	 * Contains a list of all dispensers
 	 */
-	public java.util.Vector<DispenserPosition> dispenserList = new java.util.Vector<DispenserPosition>();
+	public java.util.Vector<Location> dispenserList = new java.util.Vector<Location>();
 	
 	/**
 	 * Creates a new instance of type DispenserRefillPlugin
@@ -159,14 +162,25 @@ public class DispenserRefillPlugin extends JavaPlugin implements Listener {
 	/**
 	 * Loads the database
 	 */
-	@SuppressWarnings("unchecked")
 	public void loadDatabase() {
 		// load dispenser list from file
 		if ((new File(this.getDataFolder(), "dispensers.dat")).exists()) {
 			try {
-				ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(this.getDataFolder(), "dispensers.dat")));
-				Object result = ois.readObject();
-				this.dispenserList = (java.util.Vector<DispenserPosition>) result;
+				Scanner scanner = new Scanner(new FileInputStream(new File(this.getDataFolder(), "dispensers.dat")), "UTF-8");
+				
+				while(scanner.hasNextLine()) {
+					// get unified line
+					String line = scanner.nextLine().replace("\n", "").replace("\r", "");
+					
+					// skip empty lines
+					if (line.equalsIgnoreCase("") || line.equalsIgnoreCase(" ")) continue;
+					
+					// split line
+					String[] lineEx = line.split(";");
+					
+					// decode
+					this.dispenserList.add(new Location(this.getServer().getWorld(lineEx[3]), Double.parseDouble(lineEx[0]), Double.parseDouble(lineEx[1]), Double.parseDouble(lineEx[2])));
+				}
 				
 				this.getLogger().info("Loaded " + this.dispenserList.size() + " dispensers from database.");
 			} catch (Exception ex) {
@@ -174,7 +188,7 @@ public class DispenserRefillPlugin extends JavaPlugin implements Listener {
 				ex.printStackTrace();
 			}
 		} else
-			this.getLogger().finest("There's no dispensers.dat! Creating one on next save.");
+			this.getLogger().info("There's no dispensers.dat! Creating one on next save.");
 	}
 	
 	/**
@@ -182,12 +196,19 @@ public class DispenserRefillPlugin extends JavaPlugin implements Listener {
 	 */
 	public void saveDatabase() {
 		try {
-			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(this.getDataFolder(), "dispensers.dat")));
-			oos.writeObject(this.dispenserList);
-			oos.flush();
-			oos.close();
+			Writer out = new OutputStreamWriter(new FileOutputStream(new File(this.getDataFolder(), "dispensers.dat")), "UTF-8");
 			
-			this.getLogger().finest("Saved " + this.dispenserList.size() + " dispensers to database");
+			Iterator<Location> it = this.dispenserList.iterator();
+			
+			while(it.hasNext()) {
+				Location currPos = it.next();
+				out.write(currPos.getBlockX() + ";" + currPos.getBlockY() + ";" + currPos.getBlockZ() + ";" + currPos.getWorld().getName() + "\n");
+			}
+			
+			out.flush();
+			out.close();
+			
+			this.getLogger().info("Saved " + this.dispenserList.size() + " dispensers to database.");
 		} catch (Exception ex) {
 			this.getLogger().severe("Cannot save dispensers.dat!");
 			ex.printStackTrace();
