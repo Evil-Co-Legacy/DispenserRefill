@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Assembly file for DispenserRefill
+  Copyright (c) 2012 Akkarin <http://www.akkarin.de> 
+  Locker is available under the GNU Lesser General Public License v3 <http://www.gnu.org/licenses/lgpl.txt>
+-->
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+	<!-- Tony: This file helps us to package this plugin with license information in different package formats such as zip or gzip. -->
+	
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<formats>
+		<!-- For *NIX users -->
+		<format>tar.gz</format>
+		<format>tar.bz2</format>
+		
+		<!-- For Win* users -->
+		<format>zip</format>
+	</formats>
+	<files>
+		<!-- Jar file -->
+		<file>
+			<source>${project.build.directory}/${artifactId}-${project.version}.jar</source>
+			<destName>DispenserRefill.jar</destName>
+			<outputDirectory>/</outputDirectory>
+			<filtered>false</filtered>
+		</file>
+		
+		<!-- Readme file -->
+		<!-- Tony: This one is filtered. We'll use version information in here. -->
+		<file>
+			<source>README.html</source>
+			<outputDirectory>/</outputDirectory>
+			<filtered>true</filtered>
+		</file>
+		
+		<!-- Notes file -->
+		<!-- Tony: This one is filtered. We'll use version information in here. -->
+		<file>
+			<source>NOTES.html</source>
+			<outputDirectory>/</outputDirectory>
+			<filtered>true</filtered>
+		</file>
+	</files>
+	<fileSets>
+		<fileSet>
+			<includes>
+				<include>documentation.css</include>
+				<include>LICENSE.txt</include>
+				<include>CHANGELOG.txt</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+</assembly>

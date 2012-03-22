@@ -1,0 +1,20 @@
+1.0.0:
+	+ First release
+	+ Updated code for 1.2.3
+		+ Renamed main class to DispenserRefillPlugin
+		- Removed command methods from main class
+		- Removed event handlers from main class
+		+ Added public database access methods to main class
+		+ Made dispenser database available in main class (For external plugins)
+		+ Created new event handler class DispenserRefillWorldListener
+		+ Created new command handler class GeneralCommands (in package de.akkarin.DispenserRefill.commands)
+	- Removed 1st argument of /autorefill command
+	+ Fixed permissions
+	+ Database change now causes full database save
+
+Legend:
+	+ New Feature / Improvement
+	- Deletion / Deprecation / Bugfix
+	% Note
+	& Warning
+	\ In Progress (This information is only usefull for developers)
