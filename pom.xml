@@ -22,6 +22,12 @@
 			<url>http://mvn2.sk89q.com/repo</url>
 		</repository>
 		
+		<!-- Spout -->
+		<repository>
+			<id>spout-repo</id>
+			<url>http://repo.spout.org/</url>
+		</repository>
+		
 		<!-- Bukkit -->
 		<!-- Tony: Why the fuck you're listing this _AFTER_ sk89q's packages? -->
 		<repository>
