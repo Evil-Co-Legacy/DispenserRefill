@@ -3,3 +3,7 @@ description: Allows you to create never out of inventory running dispensers.
 main: de.akkarin.DispenserRefill.DispenserRefillPlugin
 version: "${project.version}"
 depend: [WorldEdit]
+permissions:
+    dispenserrefill.general.dispenser:
+        description: Allows users to create infinite dispensers and turn infinite ones back to normal mode.
+        default: op
