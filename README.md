@@ -1,4 +1,4 @@
-WorldGuard
+DispenserRefill
 ==========
 [![Build Status](http://build.evil-co.de/job/Dispenser%20Refill%20(Bukkit)/badge/icon)](http://build.evil-co.de/job/Dispenser%20Refill%20(Bukkit)/)
 The DispenserRefill plugin for your Bukkit server allows you to create never ending dispensers.
