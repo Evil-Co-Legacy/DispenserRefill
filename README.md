@@ -17,9 +17,9 @@ be sure to add Maven to your "PATH".
 Contributing
 ------------
 
-We happily accept contributions. The best way to do this is to fork WorldGuard
+We happily accept contributions. The best way to do this is to fork DispenserRefill
 on GitHub, add your changes, and then submit a pull request. We'll look at it,
-make comments, and merge it into WorldGuard if everything works out.
+make comments, and merge it into DispenserRefill if everything works out.
 
 By submitting code, you agree to place to license your code under the 
 GNU Lesser General Public License v3.
