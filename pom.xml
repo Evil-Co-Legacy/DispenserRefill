@@ -10,7 +10,7 @@
 	<!-- Our domain. Currently de.akkarin. We should change this to de.evil-co ... -->
 	<groupId>de.akkarin</groupId>
 	<artifactId>DispenserRefill</artifactId>
-	<version>1.0.0</version>
+	<version>1.1.0-SNAPSHOT</version>
 	<name>Dispenser Refill</name>
 	<description>Refills dispensers on your Bukkit server.</description>
 	
