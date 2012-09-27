@@ -1,6 +1,6 @@
 DispenserRefill
 ==========
-[![Build Status](http://build.evil-co.de/job/Dispenser%20Refill%20(Bukkit)/badge/icon)](http://build.evil-co.de/job/Dispenser%20Refill%20(Bukkit)/)
+![Build Status](http://build.evil-co.de/job/Dispenser%20Refill%20(Bukkit)/badge/icon)
 The DispenserRefill plugin for your Bukkit server allows you to create never ending dispensers.
 
 Compiling
