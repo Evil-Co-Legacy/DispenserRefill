@@ -72,7 +72,7 @@ public class DispenserRefillWorldListener implements Listener {
 		}
 		
 		// debug logging
-		plugin.getLogger().finest("No dispenser found for position " + event.getBlock().getLocation().toString() + ".");
+		// plugin.getLogger().finest("No dispenser found for position " + event.getBlock().getLocation().toString() + ".");
 	}
 	
 	/**
