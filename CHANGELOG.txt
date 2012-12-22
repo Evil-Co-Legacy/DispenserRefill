@@ -15,6 +15,14 @@
 		% This class was used to store data in serialized form. We'll use a new database system from now on.
 	- Removed the "The infinite dispenser at ... was eaten." easteregg.
 
+1.1.0 Alpha 1:
+	+ Updated code for 1.4
+		+ Replaced uses of CraftDispenser with Dispenser
+		- Removed old imports of CraftDispenser
+	+ Added new command aliases "/dispenserrefill" and "/infinitedispenser"
+	- Deprecated old command "/autorefill"
+		% We'll leave this command for a while.
+
 Legend:
 	+ New Feature / Improvement
 	- Deletion / Deprecation / Bugfix
