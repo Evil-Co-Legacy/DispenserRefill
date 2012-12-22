@@ -165,8 +165,10 @@ public class DispenserRefillPlugin extends JavaPlugin implements Listener {
 	public void loadDatabase() {
 		// load dispenser list from file
 		if ((new File(this.getDataFolder(), "dispensers.dat")).exists()) {
+			Scanner scanner = null;
+			
 			try {
-				Scanner scanner = new Scanner(new FileInputStream(new File(this.getDataFolder(), "dispensers.dat")), "UTF-8");
+				scanner = new Scanner(new FileInputStream(new File(this.getDataFolder(), "dispensers.dat")), "UTF-8");
 				
 				while(scanner.hasNextLine()) {
 					// get unified line
@@ -186,6 +188,8 @@ public class DispenserRefillPlugin extends JavaPlugin implements Listener {
 			} catch (Exception ex) {
 				this.getLogger().severe("Cannot load dispenser.dat!");
 				ex.printStackTrace();
+			} finally {
+				if (scanner != null) scanner.close();
 			}
 		} else
 			this.getLogger().info("There's no dispensers.dat! Creating one on next save.");
