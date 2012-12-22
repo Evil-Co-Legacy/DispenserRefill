@@ -45,7 +45,7 @@ public class GeneralCommands {
 	 * @param sender
 	 * @throws CommandException
 	 */
-	@Command(aliases = {"autorefill"}, usage = "", desc = "Switches a dispenser inventory between infinite and normal.", flags = "s", max = 0)
+	@Command(aliases = {"dispenserrefill", "infinitedispenser", "autorefill"}, usage = "", desc = "Switches a dispenser inventory between infinite and normal.", flags = "s", max = 0)
 	public void autorefill(CommandContext args, CommandSender sender) throws CommandException {
 		// wrap player
 		BukkitPlayer player = this.plugin.getWorldEdit().wrapPlayer((Player) sender);
