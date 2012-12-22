@@ -6,7 +6,7 @@ package de.akkarin.DispenserRefill;
 import java.util.Iterator;
 
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.block.CraftDispenser;
+import org.bukkit.block.Dispenser;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -61,7 +61,7 @@ public class DispenserRefillWorldListener implements Listener {
 			// check
 			if (currentPosition.equals(event.getBlock().getLocation())) {
 				// get dispenser
-				CraftDispenser dispenser = new CraftDispenser(event.getBlock());
+				Dispenser dispenser = (Dispenser) event.getBlock().getState();
 				
 				// create item stack
 				ItemStack newItemStack = event.getItem().clone();
