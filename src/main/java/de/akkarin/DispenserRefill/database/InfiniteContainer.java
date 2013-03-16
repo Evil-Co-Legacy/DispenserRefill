@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.akkarin.DispenserRefill;
+package de.akkarin.DispenserRefill.database;
 
 import org.bukkit.Location;
 
@@ -10,7 +10,7 @@ import org.bukkit.Location;
  * @copyright		2013 Evil-Co.de
  * @license		GNU Lesser Public License <http://www.gnu.org/licenses/lgpl.txt>
  */
-public class InfiniteDispenser {
+public class InfiniteContainer {
 	
 	/**
 	 * Stores the dispenser cooldown.
@@ -31,7 +31,7 @@ public class InfiniteDispenser {
 	 * Creates a new infinite dispenser.
 	 * @param			location			The dispenser's location.
 	 */
-	public InfiniteDispenser(Location location) {
+	public InfiniteContainer(Location location) {
 		this.location = location;
 	}
 	
@@ -40,7 +40,7 @@ public class InfiniteDispenser {
 	 * @param			location			Block location.
 	 * @param			cooldown			Cooldown period.
 	 */
-	public InfiniteDispenser(Location location, int cooldown) {
+	public InfiniteContainer(Location location, int cooldown) {
 		this.location = location;
 		this.cooldown = cooldown;
 	}
