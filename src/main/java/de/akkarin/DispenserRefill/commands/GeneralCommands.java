@@ -17,7 +17,8 @@ import com.sk89q.worldedit.WorldVector;
 import com.sk89q.worldedit.bukkit.BukkitPlayer;
 
 import de.akkarin.DispenserRefill.DispenserRefillPlugin;
-import de.akkarin.DispenserRefill.InfiniteDispenser;
+import de.akkarin.DispenserRefill.database.ContainerDatabaseException;
+import de.akkarin.DispenserRefill.database.InfiniteContainer;
 
 
 /**
@@ -64,15 +65,11 @@ public class GeneralCommands {
 			// get current location
 			Location dispenserPosition = new Location(this.plugin.getServer().getWorld(pos.getWorld().getName()), pos.getBlockX(), pos.getBlockY(), pos.getBlockZ());
 			
-			// get dispenser iterator
-			Iterator<InfiniteDispenser> it = this.plugin.dispenserList.iterator();
-			
 			// get cooldown
 			int cooldown = (args.argsLength() >= 1 ? args.getInteger(0) : -1);
 			
 			// loop through dispensers
-			while(it.hasNext()) {
-				InfiniteDispenser dispenser = it.next();
+			for(InfiniteContainer dispenser : this.plugin.getContainerDatabase().getContainerList()) {
 				Location currentPosition = dispenser.getLocation();
 				
 				if (currentPosition.equals(dispenserPosition)) {
@@ -88,7 +85,7 @@ public class GeneralCommands {
 						player.print("The dispenser has been updated.");
 					} else {
 						// dispenser already infinite! turn back to normal inventory
-						this.plugin.dispenserList.remove(dispenser);
+						this.plugin.getContainerDatabase().getContainerList().remove(dispenser);
 						
 						// save database
 						this.plugin.saveDatabase();
@@ -103,7 +100,7 @@ public class GeneralCommands {
 			}
 			
 			// make dispenser infinite
-			this.plugin.dispenserList.add(new InfiniteDispenser(dispenserPosition, cooldown));
+			this.plugin.getContainerDatabase().getContainerList().add(new InfiniteContainer(dispenserPosition, cooldown));
 			
 			// save database
 			this.plugin.saveDatabase();
@@ -115,6 +112,12 @@ public class GeneralCommands {
 			throw new CommandException("No block in sight!");
 	}
 	
+	/**
+	 * The /refillcooldown command.
+	 * @param args
+	 * @param sender
+	 * @throws CommandException
+	 */
 	@Command(aliases = {"refillcooldown", "dispensercooldown"}, usage = "", desc = "Shows how much cooldown is still left on a dispenser.", flags = "s", max = 0)
 	public void refillcooldown(CommandContext args, CommandSender sender) throws CommandException {
 		// wrap player
@@ -132,13 +135,9 @@ public class GeneralCommands {
 			
 			// get current location
 			Location dispenserPosition = new Location(this.plugin.getServer().getWorld(pos.getWorld().getName()), pos.getBlockX(), pos.getBlockY(), pos.getBlockZ());
-			
-			// get dispenser iterator
-			Iterator<InfiniteDispenser> it = this.plugin.dispenserList.iterator();
 
 			// loop through dispensers
-			while(it.hasNext()) {
-				InfiniteDispenser dispenser = it.next();
+			for(InfiniteContainer dispenser : this.plugin.getContainerDatabase().getContainerList()) {
 				Location currentPosition = dispenser.getLocation();
 				
 				if (currentPosition.equals(dispenserPosition)) {

@@ -3,9 +3,10 @@
  */
 package de.akkarin.DispenserRefill;
 
-import java.util.Iterator;
+import java.util.logging.Level;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Dispenser;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -14,6 +15,9 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDispenseEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
+
+import de.akkarin.DispenserRefill.database.ContainerDatabaseException;
+import de.akkarin.DispenserRefill.database.InfiniteContainer;
 
 
 /**
@@ -52,11 +56,8 @@ public class DispenserRefillWorldListener implements Listener {
 	public void onDispense(BlockDispenseEvent event) {	
 		if (event.isCancelled()) return;
 		
-		// get iterator
-		Iterator<InfiniteDispenser> it = this.plugin.dispenserList.iterator();
-		
-		while(it.hasNext()) {
-			InfiniteDispenser dispenser = it.next();
+		// loop through containers
+		for(InfiniteContainer dispenser : this.plugin.getContainerDatabase().getContainerList()) {
 			Location currentPosition = dispenser.getLocation();
 			
 			// check
@@ -77,9 +78,6 @@ public class DispenserRefillWorldListener implements Listener {
 				return; // Tony: Stop here. There is no other entry
 			}
 		}
-		
-		// debug logging
-		// plugin.getLogger().finest("No dispenser found for position " + event.getBlock().getLocation().toString() + ".");
 	}
 	
 	/**
@@ -88,18 +86,18 @@ public class DispenserRefillWorldListener implements Listener {
 	 */
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent event) {
-		// get iterator
-		Iterator<InfiniteDispenser> it = this.plugin.dispenserList.iterator();
+		// simple check
+		if (event.getBlock().getType() != Material.DISPENSER) return;
 		
-		while(it.hasNext()) {
-			// get item
-			InfiniteDispenser dispenser = it.next();
+		// loop through containers
+		for(InfiniteContainer dispenser : this.plugin.getContainerDatabase().getContainerList()) {
+			// get position
 			Location currentPosition = dispenser.getLocation();
 			
 			// check
 			if (currentPosition.equals(event.getBlock().getLocation())) {
 				// remove item
-				this.plugin.dispenserList.remove(currentPosition);
+				this.plugin.getContainerDatabase().getContainerList().remove(dispenser);
 				
 				// save database
 				this.plugin.saveDatabase();
