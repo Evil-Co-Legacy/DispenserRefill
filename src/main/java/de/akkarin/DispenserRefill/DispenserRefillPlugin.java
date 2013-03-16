@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -47,7 +48,7 @@ public class DispenserRefillPlugin extends JavaPlugin implements Listener {
 	/**
 	 * Contains a list of all dispensers
 	 */
-	public java.util.Vector<Location> dispenserList = new java.util.Vector<Location>();
+	public java.util.Vector<InfiniteDispenser> dispenserList = new java.util.Vector<InfiniteDispenser>();
 	
 	/**
 	 * Creates a new instance of type DispenserRefillPlugin
@@ -180,8 +181,14 @@ public class DispenserRefillPlugin extends JavaPlugin implements Listener {
 					// split line
 					String[] lineEx = line.split(";");
 					
+					double x = Double.parseDouble(lineEx[0]);
+					double y = Double.parseDouble(lineEx[1]);
+					double z = Double.parseDouble(lineEx[2]);
+					World world = this.getServer().getWorld(lineEx[3]);
+					int cooldown = (lineEx.length >= 5 ? Integer.parseInt(lineEx[4]) : -1);
+					
 					// decode
-					this.dispenserList.add(new Location(this.getServer().getWorld(lineEx[3]), Double.parseDouble(lineEx[0]), Double.parseDouble(lineEx[1]), Double.parseDouble(lineEx[2])));
+					this.dispenserList.add(new InfiniteDispenser(new Location(world, x, y, z), cooldown));
 				}
 				
 				this.getLogger().info("Loaded " + this.dispenserList.size() + " dispensers from database.");
@@ -202,11 +209,14 @@ public class DispenserRefillPlugin extends JavaPlugin implements Listener {
 		try {
 			Writer out = new OutputStreamWriter(new FileOutputStream(new File(this.getDataFolder(), "dispensers.dat")), "UTF-8");
 			
-			Iterator<Location> it = this.dispenserList.iterator();
+			Iterator<InfiniteDispenser> it = this.dispenserList.iterator();
 			
 			while(it.hasNext()) {
-				Location currPos = it.next();
-				out.write(currPos.getBlockX() + ";" + currPos.getBlockY() + ";" + currPos.getBlockZ() + ";" + currPos.getWorld().getName() + "\n");
+				InfiniteDispenser dispenser = it.next();
+				Location currPos = dispenser.getLocation();
+				int cooldown = dispenser.getCooldown();
+				
+				out.write(currPos.getBlockX() + ";" + currPos.getBlockY() + ";" + currPos.getBlockZ() + ";" + currPos.getWorld().getName() + ";" + cooldown + "\n");
 			}
 			
 			out.flush();
