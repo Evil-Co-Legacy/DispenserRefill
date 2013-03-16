@@ -53,19 +53,26 @@ public class DispenserRefillWorldListener implements Listener {
 		if (event.isCancelled()) return;
 		
 		// get iterator
-		Iterator<Location> it = this.plugin.dispenserList.iterator();
+		Iterator<InfiniteDispenser> it = this.plugin.dispenserList.iterator();
 		
 		while(it.hasNext()) {
-			Location currentPosition = it.next();
+			InfiniteDispenser dispenser = it.next();
+			Location currentPosition = dispenser.getLocation();
 			
 			// check
 			if (currentPosition.equals(event.getBlock().getLocation())) {
+				// stop if there's a cooldown period active
+				if (dispenser.hasCooldownPeriod(currentPosition.getWorld().getFullTime())) return; // there are no other dispensers on this position
+				
 				// get dispenser
-				Dispenser dispenser = (Dispenser) event.getBlock().getState();
+				Dispenser dispenserBlock = (Dispenser) event.getBlock().getState();
+				
+				// set off dispenser
+				dispenser.setCooldownPeriod(currentPosition.getWorld().getFullTime());
 				
 				// create item stack
 				ItemStack newItemStack = event.getItem().clone();
-				dispenser.getInventory().addItem(newItemStack);
+				dispenserBlock.getInventory().addItem(newItemStack);
 				
 				return; // Tony: Stop here. There is no other entry
 			}
@@ -82,11 +89,12 @@ public class DispenserRefillWorldListener implements Listener {
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent event) {
 		// get iterator
-		Iterator<Location> it = this.plugin.dispenserList.iterator();
+		Iterator<InfiniteDispenser> it = this.plugin.dispenserList.iterator();
 		
 		while(it.hasNext()) {
 			// get item
-			Location currentPosition = it.next();
+			InfiniteDispenser dispenser = it.next();
+			Location currentPosition = dispenser.getLocation();
 			
 			// check
 			if (currentPosition.equals(event.getBlock().getLocation())) {
