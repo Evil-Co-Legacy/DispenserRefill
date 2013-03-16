@@ -96,6 +96,12 @@ public class DispenserRefillWorldListener implements Listener {
 			
 			// check
 			if (currentPosition.equals(event.getBlock().getLocation())) {
+				// check permission
+				if (!this.plugin.hasPermission(event.getPlayer(), "dispenserrefill.general.destroy")) {
+					event.setCancelled(true);
+					return;
+				}
+				
 				// remove item
 				this.plugin.getContainerDatabase().getContainerList().remove(dispenser);
 				

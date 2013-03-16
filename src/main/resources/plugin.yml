@@ -7,3 +7,6 @@ permissions:
     dispenserrefill.general.dispenser:
         description: Allows users to create infinite dispensers and turn infinite ones back to normal mode.
         default: op
+    dispenserrefill.general.destroy
+        description: Allows users to destroy infinite dispensers.
+        default: op
