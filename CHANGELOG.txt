@@ -29,6 +29,12 @@
 	% Checked support for 1.4.7 and current WorldEdit build
 	% Reenabled /autorefill as default command (We'll need it later)
 
+1.1.0 Alpha 3
+	+ Added support for YAML database type (containers.yml)
+	+ Added a migration tool for old simple database (dispensers.dat)
+	- Removed support for simple database (dispensers.dat)
+	\ Prepared plugin for upcoming release of CB 1.5
+
 Legend:
 	+ New Feature / Improvement
 	- Deletion / Deprecation / Bugfix
