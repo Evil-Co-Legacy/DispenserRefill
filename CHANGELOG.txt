@@ -33,6 +33,8 @@
 	+ Added support for YAML database type (containers.yml)
 	+ Added a migration tool for old simple database (dispensers.dat)
 	- Removed support for simple database (dispensers.dat)
+	+ Added new permission "dispenserrefill.general.destroy"
+		% This permission allows to prevent users from destroying infinite dispensers.
 	\ Prepared plugin for upcoming release of CB 1.5
 
 Legend:
