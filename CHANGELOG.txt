@@ -22,6 +22,12 @@
 	+ Added new command aliases "/dispenserrefill" and "/infinitedispenser"
 	- Deprecated old command "/autorefill"
 		% We'll leave this command for a while.
+		
+1.1.0 Alpha 2
+	+ Added support for cooldown periods
+	+ Added new command /refillcooldown (or /dispensercooldown)
+	% Checked support for 1.4.7 and current WorldEdit build
+	% Reenabled /autorefill as default command (We'll need it later)
 
 Legend:
 	+ New Feature / Improvement
