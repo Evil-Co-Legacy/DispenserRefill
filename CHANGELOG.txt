@@ -13,7 +13,7 @@
 	+ Database change now causes full database save
 	- Removed DispenserPosition
 		% This class was used to store data in serialized form. We'll use a new database system from now on.
-	- Removed the "The infinite dispenser at ... was eaten." easteregg.
+	- Removed the "The infinite dispenser at ... was eaten." easteregg
 
 1.1.0 Alpha 1:
 	+ Updated code for 1.4
@@ -21,7 +21,7 @@
 		- Removed old imports of CraftDispenser
 	+ Added new command aliases "/dispenserrefill" and "/infinitedispenser"
 	- Deprecated old command "/autorefill"
-		% We'll leave this command for a while.
+		% We'll leave this command for a while
 		
 1.1.0 Alpha 2
 	+ Added support for cooldown periods
@@ -34,7 +34,8 @@
 	+ Added a migration tool for old simple database (dispensers.dat)
 	- Removed support for simple database (dispensers.dat)
 	+ Added new permission "dispenserrefill.general.destroy"
-		% This permission allows to prevent users from destroying infinite dispensers.
+		% This permission allows to prevent users from destroying infinite dispensers
+	- Removed unused flag -s from /autorefill command
 	\ Prepared plugin for upcoming release of CB 1.5
 
 Legend:
