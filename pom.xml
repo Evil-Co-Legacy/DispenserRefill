@@ -43,6 +43,9 @@
 
 	<!-- The build tag -->
 	<build>
+		<finalName>DispenserRefill</finalName>
+		<defaultGoal>clean package</defaultGoal>
+
 		<resources>
 			<!-- Include resources dir. -->
 			<resource>
