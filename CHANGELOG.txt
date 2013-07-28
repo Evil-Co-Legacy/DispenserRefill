@@ -38,6 +38,11 @@
 	- Removed unused flag -s from /autorefill command
 	\ Prepared plugin for upcoming release of CB 1.5
 
+1.1.0 Alpha 3
+	+ Fixed major database error
+	+ Updated dependencies (WorldEdit and Bukkit)
+	% Cleanup Release
+
 Legend:
 	+ New Feature / Improvement
 	- Deletion / Deprecation / Bugfix
