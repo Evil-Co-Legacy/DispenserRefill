@@ -118,7 +118,7 @@ public class GeneralCommands {
 	 * @param sender
 	 * @throws CommandException
 	 */
-	@Command(aliases = {"refillcooldown", "dispensercooldown"}, usage = "", desc = "Shows how much cooldown is still left on a dispenser.", flags = "s", max = 0)
+	@Command(aliases = {"refillcooldown", "dispensercooldown"}, usage = "", desc = "Shows how much cooldown is still left on a dispenser.", max = 0)
 	public void refillcooldown(CommandContext args, CommandSender sender) throws CommandException {
 		// wrap player
 		BukkitPlayer player = this.plugin.getWorldEdit().wrapPlayer((Player) sender);
