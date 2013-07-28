@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.akkarin.DispenserRefill;
+package org.evilco.bukkit.DispenserRefill;
 
 import java.util.logging.Level;
 
@@ -15,15 +15,14 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDispenseEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
-
-import de.akkarin.DispenserRefill.database.ContainerDatabaseException;
-import de.akkarin.DispenserRefill.database.InfiniteContainer;
+import org.evilco.bukkit.DispenserRefill.database.ContainerDatabaseException;
+import org.evilco.bukkit.DispenserRefill.database.InfiniteContainer;
 
 
 /**
  * @author		Johannes Donath
  * @copyright		2012 Evil-Co.de <http://www.evil-co.de>
- * @package		de.akkarin.DispenserRefill
+ * @package		org.evilco.bukkit.DispenserRefill
  */
 public class DispenserRefillWorldListener implements Listener {
 	

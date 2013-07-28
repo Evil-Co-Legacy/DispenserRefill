@@ -1,4 +1,4 @@
-package de.akkarin.DispenserRefill;
+package org.evilco.bukkit.DispenserRefill;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,6 +12,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.evilco.bukkit.DispenserRefill.commands.GeneralCommands;
+import org.evilco.bukkit.DispenserRefill.database.ContainerDatabaseException;
+import org.evilco.bukkit.DispenserRefill.database.DatabaseMigrator;
+import org.evilco.bukkit.DispenserRefill.database.DispenserDatabaseMigrationException;
+import org.evilco.bukkit.DispenserRefill.database.YAMLDatabase;
 
 import com.sk89q.bukkit.util.CommandsManagerRegistration;
 import com.sk89q.minecraft.util.commands.CommandException;
@@ -24,16 +29,10 @@ import com.sk89q.minecraft.util.commands.WrappedCommandException;
 import com.sk89q.wepif.PermissionsResolverManager;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 
-import de.akkarin.DispenserRefill.commands.GeneralCommands;
-import de.akkarin.DispenserRefill.database.ContainerDatabaseException;
-import de.akkarin.DispenserRefill.database.DatabaseMigrator;
-import de.akkarin.DispenserRefill.database.DispenserDatabaseMigrationException;
-import de.akkarin.DispenserRefill.database.YAMLDatabase;
-
 /**
  * @author		Johannes Donath
  * @copyright		2012 Evil-Co.de <http://www.evil-co.de>
- * @package		de.akkarin.DispenserRefill
+ * @package		org.evilco.bukkit.DispenserRefill
  */
 public class DispenserRefillPlugin extends JavaPlugin implements Listener {
 	

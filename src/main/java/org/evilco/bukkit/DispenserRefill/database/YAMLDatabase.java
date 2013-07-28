@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.akkarin.DispenserRefill.database;
+package org.evilco.bukkit.DispenserRefill.database;
 
 import java.io.File;
 import java.io.FileNotFoundException;

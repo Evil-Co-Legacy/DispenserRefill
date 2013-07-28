@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.akkarin.DispenserRefill.commands;
+package org.evilco.bukkit.DispenserRefill.commands;
 
 import java.util.Iterator;
 
@@ -9,6 +9,9 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.evilco.bukkit.DispenserRefill.DispenserRefillPlugin;
+import org.evilco.bukkit.DispenserRefill.database.ContainerDatabaseException;
+import org.evilco.bukkit.DispenserRefill.database.InfiniteContainer;
 
 import com.sk89q.minecraft.util.commands.Command;
 import com.sk89q.minecraft.util.commands.CommandContext;
@@ -16,15 +19,11 @@ import com.sk89q.minecraft.util.commands.CommandException;
 import com.sk89q.worldedit.WorldVector;
 import com.sk89q.worldedit.bukkit.BukkitPlayer;
 
-import de.akkarin.DispenserRefill.DispenserRefillPlugin;
-import de.akkarin.DispenserRefill.database.ContainerDatabaseException;
-import de.akkarin.DispenserRefill.database.InfiniteContainer;
-
 
 /**
  * @author		Johannes Donath
  * @copyright		2012 Evil-Co.de <http://www.evil-co.de>
- * @package		de.akkarin.DispenserRefill
+ * @package		org.evilco.bukkit.DispenserRefill
  */
 public class GeneralCommands {
 	

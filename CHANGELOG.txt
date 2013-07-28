@@ -7,7 +7,7 @@
 		+ Added public database access methods to main class
 		+ Made dispenser database available in main class (For external plugins)
 		+ Created new event handler class DispenserRefillWorldListener
-		+ Created new command handler class GeneralCommands (in package de.akkarin.DispenserRefill.commands)
+		+ Created new command handler class GeneralCommands (in package org.evilco.bukkit.DispenserRefill.commands)
 	- Removed 1st argument of /autorefill command
 	+ Fixed permissions
 	+ Database change now causes full database save

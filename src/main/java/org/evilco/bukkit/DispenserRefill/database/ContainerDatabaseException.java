@@ -1,21 +1,21 @@
 /**
  * 
  */
-package de.akkarin.DispenserRefill.database;
+package org.evilco.bukkit.DispenserRefill.database;
 
 /**
  * @author		Johannes Donath
  * @copyright		2013 Evil-Co.de
  * @license		GNU Lesser Public License <http://www.gnu.org/licenses/lgpl.txt>
  */
-public class DispenserDatabaseMigrationException extends ContainerDatabaseException {
-	private static final long serialVersionUID = 1187975392599095807L;
-
+public class ContainerDatabaseException extends Exception {
+	private static final long serialVersionUID = -3272576372870258789L;
+	
 	/**
 	 * Constructs the exception.
 	 * @param ex
 	 */
-	public DispenserDatabaseMigrationException(Exception ex) {
+	public ContainerDatabaseException(Exception ex) {
 		super(ex);
 	}
 	
@@ -23,7 +23,7 @@ public class DispenserDatabaseMigrationException extends ContainerDatabaseExcept
 	 * Constructs the exception.
 	 * @param message
 	 */
-	public DispenserDatabaseMigrationException(String message) {
+	public ContainerDatabaseException(String message) {
 		super(message);
 	}
 	
@@ -32,8 +32,7 @@ public class DispenserDatabaseMigrationException extends ContainerDatabaseExcept
 	 * @param message
 	 * @param ex
 	 */
-	public DispenserDatabaseMigrationException(String message, Exception ex) {
+	public ContainerDatabaseException(String message, Exception ex) {
 		super(message, ex);
 	}
-	
 }

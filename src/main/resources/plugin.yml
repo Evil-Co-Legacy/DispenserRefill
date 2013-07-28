@@ -1,6 +1,6 @@
 name: DispenserRefill
 description: Allows you to create never out of inventory running dispensers.
-main: de.akkarin.DispenserRefill.DispenserRefillPlugin
+main: org.evilco.bukkit.DispenserRefill.DispenserRefillPlugin
 version: "${project.version}"
 depend: [WorldEdit]
 permissions:
