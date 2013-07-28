@@ -49,7 +49,7 @@ public class DispenserRefillPlugin extends JavaPlugin implements Listener {
 	 * Creates a new instance of type DispenserRefillPlugin
 	 * @throws FileNotFoundException 
 	 */
-	public DispenserRefillPlugin() throws FileNotFoundException {
+	public DispenserRefillPlugin() {
 		// create a local copy of this instance
 		final DispenserRefillPlugin plugin = this;
 		
