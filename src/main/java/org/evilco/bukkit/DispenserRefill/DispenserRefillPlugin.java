@@ -2,7 +2,6 @@ package org.evilco.bukkit.DispenserRefill;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.nio.file.NoSuchFileException;
 import java.util.logging.Level;
 
 import org.bukkit.ChatColor;
@@ -14,8 +13,6 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.evilco.bukkit.DispenserRefill.commands.GeneralCommands;
 import org.evilco.bukkit.DispenserRefill.database.ContainerDatabaseException;
-import org.evilco.bukkit.DispenserRefill.database.DatabaseMigrator;
-import org.evilco.bukkit.DispenserRefill.database.DispenserDatabaseMigrationException;
 import org.evilco.bukkit.DispenserRefill.database.YAMLDatabase;
 
 import com.sk89q.bukkit.util.CommandsManagerRegistration;
@@ -182,16 +179,6 @@ public class DispenserRefillPlugin extends JavaPlugin implements Listener {
 			this.database.load();
 		} catch (ContainerDatabaseException ex) {
 			this.getLogger().log(Level.WARNING, "Cannot load container file. No data loaded: Creating new file on next save!", ex);
-		}
-		
-		// migrate
-		DatabaseMigrator migrator = new DatabaseMigrator(new File(this.getDataFolder(), "dispensers.dat"), this.getLogger(), this.database, this);
-		try {
-			migrator.migrate();
-		} catch (NoSuchFileException e) {
-			; // ignore (there is just no dispensers.dat)
-		} catch (DispenserDatabaseMigrationException ex) {
-			this.getLogger().log(Level.WARNING, "Cannot import old container database!", ex);
 		}
 		
 		// register events
