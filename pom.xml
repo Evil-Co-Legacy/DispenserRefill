@@ -87,18 +87,6 @@
 					</archive>
 				</configuration>
 			</plugin>
-
-			<!-- Release -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId> <!-- TODO: I guess this is messed up now o.o -->
-				<artifactId>maven-release-plugin</artifactId>
-				<version>2.2.2</version>
-				<configuration>
-					<preparationGoals>assembly:assembly</preparationGoals>
-					<goals>assembly:assembly</goals>
-					<tagNameFormat>@{project.version}</tagNameFormat>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
 
