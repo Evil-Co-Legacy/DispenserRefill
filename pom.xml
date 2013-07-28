@@ -56,6 +56,17 @@
 					<include>plugin.yml</include>
 				</includes>
 			</resource>
+			
+			<!-- Include project files -->
+			<resource>
+				<targetPath>.</targetPath>
+				<filtering>false</filtering>
+				<directory>${basedir}/</directory>
+				<includes>
+					<include>CHANGELOG.txt</include>
+					<include>LICENSE.txt</include>
+				</includes>
+			</resource>
 		</resources>
 
 		<plugins>
