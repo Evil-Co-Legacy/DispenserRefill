@@ -165,6 +165,7 @@ public class DispenserRefillPlugin extends JavaPlugin implements Listener {
 			this.database = new YAMLDatabase(new File(this.getDataFolder(), "containers.yml"), this.getLogger(), this);
 		} catch (FileNotFoundException ex) {
 			this.getLogger().log(Level.SEVERE, "Cannot init database!", ex);
+			this.getServer().getPluginManager().disablePlugin(this); // The plugin just crashed. We need to disable it!
 		}
 			
 		// Register command classes

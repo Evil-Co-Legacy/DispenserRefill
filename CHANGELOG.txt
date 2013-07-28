@@ -42,6 +42,9 @@
 	+ Fixed major database error
 	+ Updated dependencies (WorldEdit and Bukkit)
 	% Cleanup Release
+	
+1.1.0 Alpha 4
+	+ Fixed possible plugin crash in database API
 
 Legend:
 	+ New Feature / Improvement
