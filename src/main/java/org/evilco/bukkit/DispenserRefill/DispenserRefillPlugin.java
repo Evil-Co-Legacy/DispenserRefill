@@ -160,6 +160,9 @@ public class DispenserRefillPlugin extends JavaPlugin implements Listener {
 		// Set the proper command injector
 		commands.setInjector(new SimpleInjector(this));
 		
+		// create directories
+		this.getDataFolder().mkdirs();
+		
 		// create database instance
 		try {
 			this.database = new YAMLDatabase(new File(this.getDataFolder(), "containers.yml"), this.getLogger(), this);
@@ -168,13 +171,8 @@ public class DispenserRefillPlugin extends JavaPlugin implements Listener {
 		}
 			
 		// Register command classes
-		this.getLogger().finest("Hooking commands.");
 		final CommandsManagerRegistration reg = new CommandsManagerRegistration(this, this.commands);
 		reg.register(GeneralCommands.class);
-		
-		// need to create the plugins/Locker folder
-		this.getLogger().finest("Creating data dirs.");
-		this.getDataFolder().mkdirs();
 		
 		// init permissions
 		PermissionsResolverManager.initialize(this);
