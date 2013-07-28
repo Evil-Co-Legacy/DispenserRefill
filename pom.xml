@@ -4,22 +4,21 @@
   Locker is available under the GNU Lesser General Public License v3 <http://www.gnu.org/licenses/lgpl.txt>
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<!-- We're using POM 4.0.0 -->
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<!-- Our domain. Currently de.akkarin. We should change this to de.evil-co ... -->
 	<groupId>de.akkarin</groupId>
 	<artifactId>DispenserRefill</artifactId>
 	<version>1.1.0-SNAPSHOT</version>
 	<name>Dispenser Refill</name>
 	<description>Refills dispensers on your Bukkit server.</description>
-	
+
 	<!--  Define some properties -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	
-	
+
+
 	<!-- Define some external repositories here. -->
 	<repositories>
 		<!-- sk89q's shit -->
@@ -33,7 +32,7 @@
 			<id>spout-repo</id>
 			<url>http://repo.spout.org/</url>
 		</repository>
-		
+
 		<!-- Bukkit -->
 		<!-- Tony: Why the fuck you're listing this _AFTER_ sk89q's packages? -->
 		<repository>
@@ -41,11 +40,11 @@
 			<url>http://repo.bukkit.org/content/groups/public</url>
 		</repository>
 	</repositories>
-	
+
 	<!-- The build tag -->
 	<build>
-	  	<resources>
-	  		<!-- Include resources dir. -->
+		<resources>
+			<!-- Include resources dir. -->
 			<resource>
 				<targetPath>.</targetPath>
 				<filtering>true</filtering>
@@ -55,21 +54,21 @@
 				</includes>
 			</resource>
 		</resources>
-	  
+
 		<plugins>
-	  		<!-- Compiler -->
-	  		<plugin>
-	  			<groupId>org.apache.maven.plugins</groupId>
-	  			<artifactId>maven-compiler-plugin</artifactId>
-	  			<version>2.3.2</version>
-	  		</plugin>
-	  		
-	  		<!-- JARs -->
-	  		<plugin>
-	  			<groupId>org.apache.maven.plugins</groupId>
-	  			<artifactId>maven-jar-plugin</artifactId>
-	  			<version>2.4</version>
-	  			<configuration>
+			<!-- Compiler -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+			</plugin>
+
+			<!-- JARs -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
 					<archive>
 						<addMavenDescriptor>true</addMavenDescriptor>
 						<manifest>
@@ -84,14 +83,14 @@
 						-->
 					</archive>
 				</configuration>
-	  		</plugin>
-	  		
-	  		<!-- Assembly -->
-	  		<plugin>
-	  			<groupId>org.apache.maven.plugins</groupId>
-	  			<artifactId>maven-assembly-plugin</artifactId>
-	  			<version>2.2-beta-2</version>
-	  			<configuration>
+			</plugin>
+
+			<!-- Assembly -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.2-beta-2</version>
+				<configuration>
 					<descriptor>${basedir}/src/main/assembly/default.xml</descriptor>
 				</configuration>
 				<executions>
@@ -103,9 +102,9 @@
 						</goals>
 					</execution>
 				</executions>
-	  		</plugin>
-	  		
-	  		<!-- Release -->
+			</plugin>
+
+			<!-- Release -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-release-plugin</artifactId>
@@ -118,7 +117,7 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<!-- Build Dependencies -->
 	<dependencies>
 		<!-- Craftbukkit -->
@@ -128,7 +127,7 @@
 			<version>1.4.5-R1.0</version>
 			<scope>compile</scope>
 		</dependency>
-		
+
 		<!-- WorldEdit -->
 		<!-- Tony: We're using this for easy development. ;-) -->
 		<dependency>
