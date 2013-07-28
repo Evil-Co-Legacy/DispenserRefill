@@ -3,14 +3,11 @@
  */
 package org.evilco.bukkit.DispenserRefill.commands;
 
-import java.util.Iterator;
-
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.evilco.bukkit.DispenserRefill.DispenserRefillPlugin;
-import org.evilco.bukkit.DispenserRefill.database.ContainerDatabaseException;
 import org.evilco.bukkit.DispenserRefill.database.InfiniteContainer;
 
 import com.sk89q.minecraft.util.commands.Command;

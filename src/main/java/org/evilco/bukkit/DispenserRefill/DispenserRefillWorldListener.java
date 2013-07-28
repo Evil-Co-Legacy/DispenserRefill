@@ -3,8 +3,6 @@
  */
 package org.evilco.bukkit.DispenserRefill;
 
-import java.util.logging.Level;
-
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Dispenser;
@@ -15,7 +13,6 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDispenseEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
-import org.evilco.bukkit.DispenserRefill.database.ContainerDatabaseException;
 import org.evilco.bukkit.DispenserRefill.database.InfiniteContainer;
 
 
