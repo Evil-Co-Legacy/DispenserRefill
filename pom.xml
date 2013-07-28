@@ -85,25 +85,6 @@
 				</configuration>
 			</plugin>
 
-			<!-- Assembly -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.2-beta-2</version>
-				<configuration>
-					<descriptor>${basedir}/src/main/assembly/default.xml</descriptor>
-				</configuration>
-				<executions>
-					<execution>
-						<id>release</id>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
 			<!-- Release -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
