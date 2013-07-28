@@ -144,7 +144,11 @@ public class DispenserRefillPlugin extends JavaPlugin implements Listener {
 	 * @see org.bukkit.plugin.java.JavaPlugin#onDisable()
 	 */
 	public void onDisable() {
-		this.saveDatabase();
+		try {
+			this.saveDatabase();
+		} catch (NullPointerException ex) {
+			this.getLogger().log(Level.SEVERE, "An unexpected error occured during plugin shutdown! This problem may be caused by a previous error. The database has been discarded!", ex);
+		}
 		
 		// add log item
 		this.getLogger().info("DispenserRefill has been disabled.");
