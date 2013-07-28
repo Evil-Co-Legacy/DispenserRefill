@@ -43,7 +43,7 @@ public class GeneralCommands {
 	 * @param sender
 	 * @throws CommandException
 	 */
-	@Command(aliases = {"dispenserrefill", "infinitedispenser", "autorefill"}, usage = "[cooldown]", desc = "Switches a dispenser inventory between infinite and normal.", min = 0, max = 1)
+	@Command(aliases = {"dispenserrefill", "infinitedispenser", "autorefill"}, flags="c:d", usage = "<[cooldown]>", desc = "Switches a dispenser inventory between infinite and normal.", min = 0, max = 1)
 	public void autorefill(CommandContext args, CommandSender sender) throws CommandException {
 		// wrap player
 		BukkitPlayer player = this.plugin.getWorldEdit().wrapPlayer((Player) sender);
@@ -62,14 +62,15 @@ public class GeneralCommands {
 			Location dispenserPosition = new Location(this.plugin.getServer().getWorld(pos.getWorld().getName()), pos.getBlockX(), pos.getBlockY(), pos.getBlockZ());
 			
 			// get cooldown
-			int cooldown = (args.argsLength() >= 1 ? args.getInteger(0) : -1);
+			int cooldown = (args.hasFlag('c') ? args.getFlagInteger('c') : -1);
+			if (args.hasFlag('d')) cooldown = -1;
 			
 			// loop through dispensers
 			for(InfiniteContainer dispenser : this.plugin.getContainerDatabase().getContainerList()) {
 				Location currentPosition = dispenser.getLocation();
 				
 				if (currentPosition.equals(dispenserPosition)) {
-					if (args.argsLength() >= 1) {
+					if (args.hasFlag('c') || args.hasFlag('d')) {
 						// update cooldown period
 						dispenser.setCooldown(cooldown);
 						dispenser.setCooldownPeriod(-1);
@@ -78,7 +79,10 @@ public class GeneralCommands {
 						this.plugin.saveDatabase();
 						
 						// notify player
-						player.print("The dispenser has been updated.");
+						if (cooldown > -1)
+							player.print("The cooldown period has been set to " + cooldown + ".");
+						else
+							player.print("The cooldown period has been removed.");
 					} else {
 						// dispenser already infinite! turn back to normal inventory
 						this.plugin.getContainerDatabase().getContainerList().remove(dispenser);
@@ -102,7 +106,7 @@ public class GeneralCommands {
 			this.plugin.saveDatabase();
 			
 			// notify player
-			player.print("The dispenser is now infinite");
+			player.print("The dispenser has been set to infinite mode" + (args.hasFlag('c') ? " (with a cooldown period of " + args.getFlagInteger('c') + ")" : "") + ".");
 			return;
 		} else
 			throw new CommandException("No block in sight!");
