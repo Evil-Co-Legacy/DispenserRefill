@@ -1,4 +1,9 @@
-.settings/
-.project
+# Eclipse
+##########
 .classpath
-target/*
+.project
+.settings/
+
+# Maven
+########
+target/
