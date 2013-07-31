@@ -132,7 +132,7 @@
 			<!-- JAR signing -->
 			<!-- Comment this part out if you don't want to sign the plugin jar. -->
 			<!-- This part is currently pointless anyways ... -->
-			<plugin>
+			<!-- <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jarsigner-plugin</artifactId>
 				<version>1.2</version>
@@ -151,7 +151,7 @@
 					<alias>${signerAlias}</alias>
 					<storepass>${signerPassword}</storepass>
 				</configuration>
-			</plugin>
+			</plugin> -->
 		</plugins>
 	</build>
 
