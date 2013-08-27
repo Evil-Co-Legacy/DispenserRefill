@@ -43,7 +43,7 @@ public class GeneralCommands {
 	 * @param sender
 	 * @throws CommandException
 	 */
-	@Command(aliases = {"dispenserrefill", "infinitedispenser", "autorefill"}, flags="c:d", usage = "<[cooldown]>", desc = "Switches a dispenser inventory between infinite and normal.", min = 0, max = 1)
+	@Command(aliases = {"dispenserrefill", "infinitedispenser", "autorefill"}, flags="c:d", usage = "<[cooldown]>", desc = "Switches a dispenser's or dropper's inventory between infinite and normal.", min = 0, max = 1)
 	public void autorefill(CommandContext args, CommandSender sender) throws CommandException {
 		// wrap player
 		BukkitPlayer player = this.plugin.getWorldEdit().wrapPlayer((Player) sender);
@@ -56,7 +56,10 @@ public class GeneralCommands {
 		
 		if (pos != null) {
 			// check for correct block
-			if (pos.getWorld().getBlockType(pos) != Material.DISPENSER.getId()) throw new CommandException("Sorry, but currently only dispensers are allowed to be infinite.");
+			if (pos.getWorld().getBlockType(pos) != Material.DISPENSER.getId() && pos.getWorld().getBlockType(pos) != Material.DROPPER.getId()) throw new CommandException("Sorry, but currently only dispensers and droppers are allowed to be infinite.");
+			
+			// get name of block for use in error messages
+			String blockType = Material.getMaterial(pos.getWorld().getBlockType(pos)).name().toLowerCase();
 			
 			// get current location
 			Location dispenserPosition = new Location(this.plugin.getServer().getWorld(pos.getWorld().getName()), pos.getBlockX(), pos.getBlockY(), pos.getBlockZ());
@@ -91,7 +94,7 @@ public class GeneralCommands {
 						this.plugin.saveDatabase();
 						
 						// notify player
-						player.print("The dispenser is now back in normal mode. It can now run out of contents.");
+						player.print("The " + blockType + " is now back in normal mode. It can now run out of contents.");
 					}
 					
 					// stop loop & command
@@ -106,7 +109,7 @@ public class GeneralCommands {
 			this.plugin.saveDatabase();
 			
 			// notify player
-			player.print("The dispenser has been set to infinite mode" + (args.hasFlag('c') ? " (with a cooldown period of " + args.getFlagInteger('c') + ")" : "") + ".");
+			player.print("The " + blockType + " has been set to infinite mode" + (args.hasFlag('c') ? " (with a cooldown period of " + args.getFlagInteger('c') + ")" : "") + ".");
 			return;
 		} else
 			throw new CommandException("No block in sight!");
@@ -118,7 +121,7 @@ public class GeneralCommands {
 	 * @param sender
 	 * @throws CommandException
 	 */
-	@Command(aliases = {"refillcooldown", "dispensercooldown"}, usage = "", desc = "Shows how much cooldown is still left on a dispenser.", max = 0)
+	@Command(aliases = {"refillcooldown", "dispensercooldown"}, usage = "", desc = "Shows how much cooldown is still left on a dispenser or dropper.", max = 0)
 	public void refillcooldown(CommandContext args, CommandSender sender) throws CommandException {
 		// wrap player
 		BukkitPlayer player = this.plugin.getWorldEdit().wrapPlayer((Player) sender);
@@ -131,7 +134,7 @@ public class GeneralCommands {
 		
 		if (pos != null) {
 			// check for correct block
-			if (pos.getWorld().getBlockType(pos) != Material.DISPENSER.getId()) throw new CommandException("This block doesn't like cookies!"); // XXX: ee
+			if (pos.getWorld().getBlockType(pos) != Material.DISPENSER.getId() && pos.getWorld().getBlockType(pos) != Material.DROPPER.getId()) throw new CommandException("This block doesn't like cookies!"); // XXX: ee
 			
 			// get current location
 			Location dispenserPosition = new Location(this.plugin.getServer().getWorld(pos.getWorld().getName()), pos.getBlockX(), pos.getBlockY(), pos.getBlockZ());
