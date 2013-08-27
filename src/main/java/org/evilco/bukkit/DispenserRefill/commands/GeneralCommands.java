@@ -58,7 +58,7 @@ public class GeneralCommands {
 			// check for correct block
 			if (pos.getWorld().getBlockType(pos) != Material.DISPENSER.getId() && pos.getWorld().getBlockType(pos) != Material.DROPPER.getId()) throw new CommandException("Sorry, but currently only dispensers and droppers are allowed to be infinite.");
 			
-			// get name of block for use in error messages
+			// get name of block for use in messages
 			String blockType = Material.getMaterial(pos.getWorld().getBlockType(pos)).name().toLowerCase();
 			
 			// get current location
