@@ -5,12 +5,12 @@ package org.evilco.bukkit.DispenserRefill;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Dispenser;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDispenseEvent;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
 import org.evilco.bukkit.DispenserRefill.database.InfiniteContainer;
@@ -62,7 +62,7 @@ public class DispenserRefillWorldListener implements Listener {
 				if (dispenser.hasCooldownPeriod(currentPosition.getWorld().getFullTime())) return; // there are no other dispensers on this position
 				
 				// get dispenser
-				Dispenser dispenserBlock = (Dispenser) event.getBlock().getState();
+				InventoryHolder dispenserBlock = (InventoryHolder) event.getBlock().getState();
 				
 				// set off dispenser
 				dispenser.setCooldownPeriod(currentPosition.getWorld().getFullTime());
@@ -83,7 +83,7 @@ public class DispenserRefillWorldListener implements Listener {
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent event) {
 		// simple check
-		if (event.getBlock().getType() != Material.DISPENSER) return;
+		if (event.getBlock().getType() != Material.DISPENSER && event.getBlock().getType() != Material.DROPPER) return;
 		
 		// loop through containers
 		for(InfiniteContainer dispenser : this.plugin.getContainerDatabase().getContainerList()) {
@@ -105,7 +105,8 @@ public class DispenserRefillWorldListener implements Listener {
 				this.plugin.saveDatabase();
 				
 				// notify user
-				this.plugin.getWorldEdit().wrapPlayer(event.getPlayer()).printError("You just destroyed an infinite dispenser.");
+				String blockType = event.getBlock().getType().name().toLowerCase();
+				this.plugin.getWorldEdit().wrapPlayer(event.getPlayer()).printError("You just destroyed an infinite " + blockType + ".");
 				
 				// skip all other loops
 				return;
