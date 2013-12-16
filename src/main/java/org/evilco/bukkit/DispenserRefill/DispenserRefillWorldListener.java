@@ -6,6 +6,7 @@ package org.evilco.bukkit.DispenserRefill;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Dispenser;
+import org.bukkit.block.Dropper;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -62,14 +63,26 @@ public class DispenserRefillWorldListener implements Listener {
 				if (dispenser.hasCooldownPeriod(currentPosition.getWorld().getFullTime())) return; // there are no other dispensers on this position
 				
 				// get dispenser
-				Dispenser dispenserBlock = (Dispenser) event.getBlock().getState();
-				
-				// set off dispenser
-				dispenser.setCooldownPeriod(currentPosition.getWorld().getFullTime());
-				
-				// create item stack
-				ItemStack newItemStack = event.getItem().clone();
-				dispenserBlock.getInventory().addItem(newItemStack);
+				if (event.getBlock ().getState () instanceof Dispenser) {
+					Dispenser dispenserBlock = (Dispenser) event.getBlock().getState();
+
+					// set off dispenser
+					dispenser.setCooldownPeriod(currentPosition.getWorld().getFullTime());
+
+					// create item stack
+					ItemStack newItemStack = event.getItem().clone();
+					dispenserBlock.getInventory().addItem(newItemStack);
+				} else if (event.getBlock ().getState () instanceof Dropper) {
+					Dropper dispenserBlock = (Dropper) event.getBlock().getState();
+
+					// set off dispenser
+					dispenser.setCooldownPeriod(currentPosition.getWorld().getFullTime());
+
+					// create item stack
+					ItemStack newItemStack = event.getItem().clone();
+					dispenserBlock.getInventory().addItem(newItemStack);
+				} else
+					this.plugin.getLogger ().warning ("The block at location " + currentPosition.getX () + "," + currentPosition.getY () + "," + currentPosition.getZ () + " is not a valid container.");
 				
 				return; // Tony: Stop here. There is no other entry
 			}

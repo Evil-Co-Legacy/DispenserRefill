@@ -3,18 +3,18 @@
  */
 package org.evilco.bukkit.DispenserRefill.commands;
 
+import com.sk89q.minecraft.util.commands.Command;
+import com.sk89q.minecraft.util.commands.CommandContext;
+import com.sk89q.minecraft.util.commands.CommandException;
+import com.sk89q.worldedit.WorldVector;
+import com.sk89q.worldedit.blocks.BlockID;
+import com.sk89q.worldedit.bukkit.BukkitPlayer;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.evilco.bukkit.DispenserRefill.DispenserRefillPlugin;
 import org.evilco.bukkit.DispenserRefill.database.InfiniteContainer;
-
-import com.sk89q.minecraft.util.commands.Command;
-import com.sk89q.minecraft.util.commands.CommandContext;
-import com.sk89q.minecraft.util.commands.CommandException;
-import com.sk89q.worldedit.WorldVector;
-import com.sk89q.worldedit.bukkit.BukkitPlayer;
 
 
 /**
@@ -55,9 +55,9 @@ public class GeneralCommands {
 		WorldVector pos = player.getBlockTrace(300);
 		
 		if (pos != null) {
-			// check for correct block
-			if (pos.getWorld().getBlockType(pos) != Material.DISPENSER.getId()) throw new CommandException("Sorry, but currently only dispensers are allowed to be infinite.");
-			
+			// check selected block
+			if (pos.getWorld ().getBlock (pos).getId () != BlockID.DISPENSER && pos.getWorld ().getBlock (pos).getId () != BlockID.DROPPER) throw new CommandException("Sorry, but currently only dispensers and droppers are allowed to be infinite.");
+
 			// get current location
 			Location dispenserPosition = new Location(this.plugin.getServer().getWorld(pos.getWorld().getName()), pos.getBlockX(), pos.getBlockY(), pos.getBlockZ());
 			
