@@ -44,7 +44,9 @@
 	% Cleanup Release
 	
 1.1.0 Alpha 4
+	+ Added support for droppers
 	+ Fixed possible plugin crash in database API
+	+ Fixed possible future problems (Removed calls to deprecated types and methods)
 
 Legend:
 	+ New Feature / Improvement
