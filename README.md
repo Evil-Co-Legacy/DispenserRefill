@@ -1,4 +1,4 @@
-DispenserRefill [![Build Status](https://travis-ci.org/LordAkkarin/DispenserRefill.png?branch=master)](https://travis-ci.org/LordAkkarin/DispenserRefill)
+DispenserRefill [![Build Status](http://www.evil-co.com/ci/plugins/servlet/buildStatusImage/BDR-MASTER)](http://www.evil-co.com/ci/browse/BDR-MASTER)
 ===============
 The DispenserRefill plugin for your Bukkit server allows you to create never ending dispensers.
 
