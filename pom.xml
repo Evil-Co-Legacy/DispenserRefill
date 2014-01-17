@@ -25,6 +25,12 @@
 
 	<!-- Define some external repositories here. -->
 	<repositories>
+		<!-- Evil-Co -->
+		<repository>
+			<id>evil-co</id>
+			<url>http://nexus.evil-co.org/content/groups/public/</url>
+		</repository>
+
 		<!-- sk89q's shit -->
 		<repository>
 			<id>sk89q-mvn2</id>
@@ -47,7 +53,7 @@
 
 	<!-- The build tag -->
 	<build>
-		<finalName>DispenserRefill</finalName>
+		<finalName>DispenserRefill-${project.version}</finalName>
 		<defaultGoal>clean package</defaultGoal>
 
 		<resources>
@@ -173,6 +179,13 @@
 			<version>5.5.3</version>
 			<scope>compile</scope>
 			<type>jar</type>
+		</dependency>
+
+		<!-- Plugin Utility -->
+		<dependency>
+			<groupId>com.evilco.bukkit.util</groupId>
+			<artifactId>plugin</artifactId>
+			<version>1.1.0</version>
 		</dependency>
 	</dependencies>
 </project>
