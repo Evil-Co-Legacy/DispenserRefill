@@ -22,13 +22,15 @@
 		<signerAlias>evilco-commercial</signerAlias>
 	</properties>
 
-
 	<!-- Define some external repositories here. -->
 	<repositories>
 		<!-- Evil-Co -->
 		<repository>
 			<id>evil-co</id>
-			<url>http://nexus.evil-co.org/content/groups/public/</url>
+			<url>http://nexus.evil-co.org/content/repositories/free-snapshots/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
 		</repository>
 
 		<!-- sk89q's shit -->
@@ -179,7 +181,7 @@
 		<dependency>
 			<groupId>com.evilco.bukkit.util</groupId>
 			<artifactId>plugin</artifactId>
-			<version>1.1.0</version>
+			<version>1.1.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
