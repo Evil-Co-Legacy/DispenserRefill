@@ -2,6 +2,7 @@ package org.evilco.bukkit.DispenserRefill;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.logging.Level;
 
 import org.bukkit.ChatColor;
@@ -25,6 +26,7 @@ import com.sk89q.minecraft.util.commands.SimpleInjector;
 import com.sk89q.minecraft.util.commands.WrappedCommandException;
 import com.sk89q.wepif.PermissionsResolverManager;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
+import org.mcstats.MetricsLite;
 
 /**
  * @author		Johannes Donath
@@ -188,6 +190,14 @@ public class DispenserRefillPlugin extends JavaPlugin implements Listener {
 		
 		// register events
 		(new DispenserRefillWorldListener(this)).registerEvents();
+
+		// load metrics
+		try {
+			MetricsLite metrics = new MetricsLite (this);
+			metrics.start ();
+		} catch (IOException ex) {
+			this.getLogger ().warning ("Could not start metrics.");
+		}
 	}
 	
 	/**

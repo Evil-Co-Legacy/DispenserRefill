@@ -45,6 +45,12 @@
 			<id>bukkit-repo</id>
 			<url>http://repo.bukkit.org/content/groups/public</url>
 		</repository>
+
+		<!-- Metrics -->
+		<repository>
+			<id>Plugin Metrics</id>
+			<url>http://repo.mcstats.org/content/repositories/public</url>
+		</repository>
 	</repositories>
 
 	<!-- The build tag -->
@@ -182,6 +188,14 @@
 			<groupId>com.evilco.bukkit.util</groupId>
 			<artifactId>plugin</artifactId>
 			<version>1.1.0-SNAPSHOT</version>
+		</dependency>
+
+		<!-- Metrics -->
+		<dependency>
+			<groupId>org.mcstats.bukkit</groupId>
+			<artifactId>metrics-lite</artifactId>
+			<version>R7</version>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 </project>
