@@ -132,6 +132,7 @@
 					<artifactSet>
 						<includes>
 							<include>com.evilco.*:*</include>
+							<include>org.mcstats.bukkit:metrics-lite</include>
 						</includes>
 					</artifactSet>
 				</configuration>
